@@ -5,3 +5,5 @@ Converter/obj
 Converter.vcxproj.user
 nocommit
 build
+.vs/
+.vscode/
