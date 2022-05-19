@@ -459,10 +459,18 @@ namespace chunker_countsort_laszip {
 			int offsetClassification = outputAttributes.getOffset("classification");
 			Attribute* attributeClassification = outputAttributes.get("classification");
 			auto classification = [data, point, header, offsetClassification, attributeClassification](int64_t offset) {
-				data[offset + offsetClassification] = point->classification;
+				if (header->point_data_format > 5) {
+					data[offset + offsetClassification] = point->extended_classification;
 
-				attributeClassification->min.x = std::min(attributeClassification->min.x, double(point->classification));
-				attributeClassification->max.x = std::max(attributeClassification->max.x, double(point->classification));
+					attributeClassification->min.x = std::min(attributeClassification->min.x, double(point->extended_classification));
+					attributeClassification->max.x = std::max(attributeClassification->max.x, double(point->extended_classification));
+				}
+				else {
+					data[offset + offsetClassification] = point->classification;
+
+					attributeClassification->min.x = std::min(attributeClassification->min.x, double(point->classification));
+					attributeClassification->max.x = std::max(attributeClassification->max.x, double(point->classification));
+				}
 			};
 
 			int offsetSourceId = outputAttributes.getOffset("point source id");
