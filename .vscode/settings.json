@@ -86,7 +86,7 @@
 	"editor.autoIndent": false,
 	"editor.detectIndentation": false,
 	"editor.insertSpaces": false,
-	"editor.minimap.enabled": false,
+	"editor.minimap.enabled": true,
 	"editor.autoClosingBrackets": false,
 	"editor.formatOnType": false,
 	"editor.acceptSuggestionOnEnter": "off",
